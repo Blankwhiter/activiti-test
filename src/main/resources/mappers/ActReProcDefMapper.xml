@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.activititest.dao.ActReProcDefMapper">
+  <resultMap id="BaseResultMap" type="com.example.activititest.po.ActReProcDef">
+    <id column="ID_" jdbcType="VARCHAR" property="id" />
+    <result column="REV_" jdbcType="INTEGER" property="rev" />
+    <result column="CATEGORY_" jdbcType="VARCHAR" property="category" />
+    <result column="NAME_" jdbcType="VARCHAR" property="name" />
+    <result column="KEY_" jdbcType="VARCHAR" property="key" />
+    <result column="VERSION_" jdbcType="INTEGER" property="version" />
+    <result column="DEPLOYMENT_ID_" jdbcType="VARCHAR" property="deploymentId" />
+    <result column="RESOURCE_NAME_" jdbcType="VARCHAR" property="resourceName" />
+    <result column="DGRM_RESOURCE_NAME_" jdbcType="VARCHAR" property="dgrmResourceName" />
+    <result column="DESCRIPTION_" jdbcType="VARCHAR" property="description" />
+    <result column="HAS_START_FORM_KEY_" jdbcType="TINYINT" property="hasStartFormKey" />
+    <result column="HAS_GRAPHICAL_NOTATION_" jdbcType="TINYINT" property="hasGraphicalNotation" />
+    <result column="SUSPENSION_STATE_" jdbcType="INTEGER" property="suspensionState" />
+    <result column="TENANT_ID_" jdbcType="VARCHAR" property="tenantId" />
+    <result column="ENGINE_VERSION_" jdbcType="VARCHAR" property="engineVersion" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID_, REV_, CATEGORY_, NAME_, KEY_, VERSION_, DEPLOYMENT_ID_, RESOURCE_NAME_, DGRM_RESOURCE_NAME_, 
+    DESCRIPTION_, HAS_START_FORM_KEY_, HAS_GRAPHICAL_NOTATION_, SUSPENSION_STATE_, TENANT_ID_, 
+    ENGINE_VERSION_
+  </sql>
+  <select id="selectByExample" parameterType="com.example.activititest.po.ActReProcDefExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from act_re_procdef
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from act_re_procdef
+    where ID_ = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from act_re_procdef
+    where ID_ = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.activititest.po.ActReProcDefExample">
+    delete from act_re_procdef
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.activititest.po.ActReProcDef">
+    insert into act_re_procdef (ID_, REV_, CATEGORY_, 
+      NAME_, KEY_, VERSION_, 
+      DEPLOYMENT_ID_, RESOURCE_NAME_, DGRM_RESOURCE_NAME_, 
+      DESCRIPTION_, HAS_START_FORM_KEY_, HAS_GRAPHICAL_NOTATION_, 
+      SUSPENSION_STATE_, TENANT_ID_, ENGINE_VERSION_
+      )
+    values (#{id,jdbcType=VARCHAR}, #{rev,jdbcType=INTEGER}, #{category,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{key,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, 
+      #{deploymentId,jdbcType=VARCHAR}, #{resourceName,jdbcType=VARCHAR}, #{dgrmResourceName,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{hasStartFormKey,jdbcType=TINYINT}, #{hasGraphicalNotation,jdbcType=TINYINT}, 
+      #{suspensionState,jdbcType=INTEGER}, #{tenantId,jdbcType=VARCHAR}, #{engineVersion,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.activititest.po.ActReProcDef">
+    insert into act_re_procdef
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID_,
+      </if>
+      <if test="rev != null">
+        REV_,
+      </if>
+      <if test="category != null">
+        CATEGORY_,
+      </if>
+      <if test="name != null">
+        NAME_,
+      </if>
+      <if test="key != null">
+        KEY_,
+      </if>
+      <if test="version != null">
+        VERSION_,
+      </if>
+      <if test="deploymentId != null">
+        DEPLOYMENT_ID_,
+      </if>
+      <if test="resourceName != null">
+        RESOURCE_NAME_,
+      </if>
+      <if test="dgrmResourceName != null">
+        DGRM_RESOURCE_NAME_,
+      </if>
+      <if test="description != null">
+        DESCRIPTION_,
+      </if>
+      <if test="hasStartFormKey != null">
+        HAS_START_FORM_KEY_,
+      </if>
+      <if test="hasGraphicalNotation != null">
+        HAS_GRAPHICAL_NOTATION_,
+      </if>
+      <if test="suspensionState != null">
+        SUSPENSION_STATE_,
+      </if>
+      <if test="tenantId != null">
+        TENANT_ID_,
+      </if>
+      <if test="engineVersion != null">
+        ENGINE_VERSION_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="rev != null">
+        #{rev,jdbcType=INTEGER},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null">
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="deploymentId != null">
+        #{deploymentId,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceName != null">
+        #{resourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="dgrmResourceName != null">
+        #{dgrmResourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="hasStartFormKey != null">
+        #{hasStartFormKey,jdbcType=TINYINT},
+      </if>
+      <if test="hasGraphicalNotation != null">
+        #{hasGraphicalNotation,jdbcType=TINYINT},
+      </if>
+      <if test="suspensionState != null">
+        #{suspensionState,jdbcType=INTEGER},
+      </if>
+      <if test="tenantId != null">
+        #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="engineVersion != null">
+        #{engineVersion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.activititest.po.ActReProcDefExample" resultType="java.lang.Long">
+    select count(*) from act_re_procdef
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update act_re_procdef
+    <set>
+      <if test="record.id != null">
+        ID_ = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rev != null">
+        REV_ = #{record.rev,jdbcType=INTEGER},
+      </if>
+      <if test="record.category != null">
+        CATEGORY_ = #{record.category,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        NAME_ = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.key != null">
+        KEY_ = #{record.key,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null">
+        VERSION_ = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.deploymentId != null">
+        DEPLOYMENT_ID_ = #{record.deploymentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resourceName != null">
+        RESOURCE_NAME_ = #{record.resourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dgrmResourceName != null">
+        DGRM_RESOURCE_NAME_ = #{record.dgrmResourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null">
+        DESCRIPTION_ = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasStartFormKey != null">
+        HAS_START_FORM_KEY_ = #{record.hasStartFormKey,jdbcType=TINYINT},
+      </if>
+      <if test="record.hasGraphicalNotation != null">
+        HAS_GRAPHICAL_NOTATION_ = #{record.hasGraphicalNotation,jdbcType=TINYINT},
+      </if>
+      <if test="record.suspensionState != null">
+        SUSPENSION_STATE_ = #{record.suspensionState,jdbcType=INTEGER},
+      </if>
+      <if test="record.tenantId != null">
+        TENANT_ID_ = #{record.tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.engineVersion != null">
+        ENGINE_VERSION_ = #{record.engineVersion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update act_re_procdef
+    set ID_ = #{record.id,jdbcType=VARCHAR},
+      REV_ = #{record.rev,jdbcType=INTEGER},
+      CATEGORY_ = #{record.category,jdbcType=VARCHAR},
+      NAME_ = #{record.name,jdbcType=VARCHAR},
+      KEY_ = #{record.key,jdbcType=VARCHAR},
+      VERSION_ = #{record.version,jdbcType=INTEGER},
+      DEPLOYMENT_ID_ = #{record.deploymentId,jdbcType=VARCHAR},
+      RESOURCE_NAME_ = #{record.resourceName,jdbcType=VARCHAR},
+      DGRM_RESOURCE_NAME_ = #{record.dgrmResourceName,jdbcType=VARCHAR},
+      DESCRIPTION_ = #{record.description,jdbcType=VARCHAR},
+      HAS_START_FORM_KEY_ = #{record.hasStartFormKey,jdbcType=TINYINT},
+      HAS_GRAPHICAL_NOTATION_ = #{record.hasGraphicalNotation,jdbcType=TINYINT},
+      SUSPENSION_STATE_ = #{record.suspensionState,jdbcType=INTEGER},
+      TENANT_ID_ = #{record.tenantId,jdbcType=VARCHAR},
+      ENGINE_VERSION_ = #{record.engineVersion,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.activititest.po.ActReProcDef">
+    update act_re_procdef
+    <set>
+      <if test="rev != null">
+        REV_ = #{rev,jdbcType=INTEGER},
+      </if>
+      <if test="category != null">
+        CATEGORY_ = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME_ = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null">
+        KEY_ = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        VERSION_ = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="deploymentId != null">
+        DEPLOYMENT_ID_ = #{deploymentId,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceName != null">
+        RESOURCE_NAME_ = #{resourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="dgrmResourceName != null">
+        DGRM_RESOURCE_NAME_ = #{dgrmResourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        DESCRIPTION_ = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="hasStartFormKey != null">
+        HAS_START_FORM_KEY_ = #{hasStartFormKey,jdbcType=TINYINT},
+      </if>
+      <if test="hasGraphicalNotation != null">
+        HAS_GRAPHICAL_NOTATION_ = #{hasGraphicalNotation,jdbcType=TINYINT},
+      </if>
+      <if test="suspensionState != null">
+        SUSPENSION_STATE_ = #{suspensionState,jdbcType=INTEGER},
+      </if>
+      <if test="tenantId != null">
+        TENANT_ID_ = #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="engineVersion != null">
+        ENGINE_VERSION_ = #{engineVersion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID_ = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.activititest.po.ActReProcDef">
+    update act_re_procdef
+    set REV_ = #{rev,jdbcType=INTEGER},
+      CATEGORY_ = #{category,jdbcType=VARCHAR},
+      NAME_ = #{name,jdbcType=VARCHAR},
+      KEY_ = #{key,jdbcType=VARCHAR},
+      VERSION_ = #{version,jdbcType=INTEGER},
+      DEPLOYMENT_ID_ = #{deploymentId,jdbcType=VARCHAR},
+      RESOURCE_NAME_ = #{resourceName,jdbcType=VARCHAR},
+      DGRM_RESOURCE_NAME_ = #{dgrmResourceName,jdbcType=VARCHAR},
+      DESCRIPTION_ = #{description,jdbcType=VARCHAR},
+      HAS_START_FORM_KEY_ = #{hasStartFormKey,jdbcType=TINYINT},
+      HAS_GRAPHICAL_NOTATION_ = #{hasGraphicalNotation,jdbcType=TINYINT},
+      SUSPENSION_STATE_ = #{suspensionState,jdbcType=INTEGER},
+      TENANT_ID_ = #{tenantId,jdbcType=VARCHAR},
+      ENGINE_VERSION_ = #{engineVersion,jdbcType=VARCHAR}
+    where ID_ = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
